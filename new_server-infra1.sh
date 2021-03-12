@@ -3,6 +3,12 @@
 apt update > /dev/null
 apt upgrade -y > /dev/null
 echo Installing stuff from apt
+
+echo "Grabbing down new config files (interfaces, openstack_user_config.yml, resolv.conf)"
+wget -O ~/etc/network/interfaces https://raw.githubusercontent.com/sean-perryman/openstack/main/infra1_interfaces
+wget -O ~/openstack_user_config.yml https://raw.githubusercontent.com/sean-perryman/openstack/main/openstack_user_config.yml
+wget -O ~/resolv.conf https://raw.githubusercontent.com/sean-perryman/openstack/main/resolv.conf
+
 apt install -y ifupdown ifupdown-extra bridge-utils resolvconf build-essential git chrony openssh-server python3-dev
 
 echo Disabling UFW
@@ -39,20 +45,21 @@ git clone -b 22.0.1 https://opendev.org/openstack/openstack-ansible /opt/opensta
 echo Copying over openstack_deploy directory
 cp -R /opt/openstack-ansible/etc/openstack_deploy/ /etc/
 
-echo Creating user_secrets.yml
-python3 /opt/openstack-ansible/scripts/pw-token-gen.py --file /etc/openstack_deploy/user_secrets.yml
+echo Bootstrapping Ansible
+/usr/bin/bash /opt/openstack-ansible/scripts/bootstrap-ansible.sh
 
-echo "Grabbing down new config files (interfaces, openstack_user_config.yml, resolv.conf)"
-wget -O /etc/network/interfaces https://raw.githubusercontent.com/sean-perryman/openstack/main/infra1_interfaces
-wget -O /etc/openstack_deploy/openstack_user_config.yml https://raw.githubusercontent.com/sean-perryman/openstack/main/openstack_user_config.yml
-wget -O /etc/resolv.conf https://raw.githubusercontent.com/sean-perryman/openstack/main/resolv.conf
+echo Creating user_secrets.yml
+/usr/bin/python3 /opt/openstack-ansible/scripts/pw-token-gen.py --file /etc/openstack_deploy/user_secrets.yml
+
+cp ~/resolv.conf /etc/resolv.conf
+cp ~/openstack_user_config.yml /etc/openstack_deploy
+cp ~/interfaces /etc/network/interfaces
 
 echo Done!
 echo "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
 echo "| Things that may still need to be done                                   |"
 echo "| ----------------------------------------------------------------------- |"
 echo "| Add yourself to visudo NOPASSWD                                         |"
-echo "| /opt/openstack-ansible/scripts/bootstrap-ansible.sh                     |"
 echo "| /opt/openstack-ansible/playbooks/openstack-ansible setup-everything.yml |"
 echo "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
 
