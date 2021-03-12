@@ -3,7 +3,7 @@
 apt update > /dev/null
 apt upgrade -y > /dev/null
 echo Installing stuff from apt
-apt install -y ifupdown ifupdown-extra bridge-utils resolvconf build-essential git chrony openssh-server python3-dev sudo
+apt install -y ifupdown ifupdown-extra bridge-utils resolvconf build-essential git chrony openssh-server python3-dev
 
 echo Disabling UFW
 systemctl disable ufw
@@ -43,9 +43,9 @@ echo Creating user_secrets.yml
 python3 /opt/openstack-ansible/scripts/pw-token-gen.py --file /etc/openstack_deploy/user_secrets.yml
 
 echo "Grabbing down new config files (interfaces, openstack_user_config.yml, resolv.conf)"
-wget -O /etc/network/interfaces http://m.qrl.us/NmTsM/infra1_interfaces
-wget -O /etc/openstack_deploy/openstack_user_config.yml http://m.qrl.us/DOdWV/openstack_user_config.yml
-wget -O /etc/resolv.conf http://m.qrl.us/tb0BN/resolv.conf
+wget -O /etc/network/interfaces https://raw.githubusercontent.com/sean-perryman/openstack/main/infra1_interfaces
+wget -O /etc/openstack_deploy/openstack_user_config.yml https://raw.githubusercontent.com/sean-perryman/openstack/main/openstack_user_config.yml
+wget -O /etc/resolv.conf https://raw.githubusercontent.com/sean-perryman/openstack/main/resolv.conf
 
 echo Done!
 echo "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
