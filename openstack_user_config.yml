@@ -130,8 +130,10 @@ network_hosts:
   infra1:
     ip: 172.29.236.11
 
-# nova hypervisors
+# nova hypervisors - YOU HAVE TO HAVE ONE OF THESE FOR THIS TO WORK
 compute_hosts:
+  infra1:
+    ip: 172.29.236.11
   #compute1:
   #  ip: 172.29.236.21
 
