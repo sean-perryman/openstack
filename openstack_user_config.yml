@@ -132,22 +132,22 @@ network_hosts:
 
 # nova hypervisors - YOU HAVE TO HAVE ONE OF THESE FOR THIS TO WORK
 compute_hosts:
-  infra1:
-    ip: 172.29.236.11
-  #compute1:
-  #  ip: 172.29.236.21
+#  infra1:
+#    ip: 172.29.236.11
+compute1:
+  ip: 172.29.236.21
 
 # cinder storage host (LVM-backed)
 storage_hosts:
-  infra1:
-    ip: 172.29.236.11
-  #compute1:
-  #  ip: 172.29.236.21
-  #  container_vars:
-  #    cinder_backends:
-  #      limit_container_types: cinder_volume
-  #      lvm:
-  #        volume_group: cinder-volumes
-  #        volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
-  #        volume_backend_name: LVM_iSCSI
-  #        iscsi_ip_address: "172.29.244.21"
+#  infra1:
+#    ip: 172.29.236.11
+  compute1:
+    ip: 172.29.236.21
+    container_vars:
+      cinder_backends:
+        limit_container_types: cinder_volume
+        lvm:
+          volume_group: cinder-volumes
+          volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
+          volume_backend_name: LVM_iSCSI
+          iscsi_ip_address: "172.29.244.21"
