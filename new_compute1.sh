@@ -41,6 +41,11 @@ chown -R cloudy:cloudy /home/cloudy/
 cp ~/resolv.conf /etc/resolv.conf
 cp ~/interfaces /etc/network/interfaces
 
+ping google.com
+
+echo Interfaces file
+head /etc/network/interfaces
+
 echo Done!
 echo "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
 echo "| Things that may still need to be done                                   |"
@@ -48,4 +53,5 @@ echo "| ----------------------------------------------------------------------- 
 echo "| Add yourself to visudo NOPASSWD                                         |"
 echo "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
 
+read -p "Press [Enter] to reboot if everything looks good. Otherwise, CTRL + C to cancel."
 reboot

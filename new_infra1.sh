@@ -55,6 +55,14 @@ cp ~/resolv.conf /etc/resolv.conf
 cp ~/openstack_user_config.yml /etc/openstack_deploy
 cp ~/interfaces /etc/network/interfaces
 
+ping google.com
+
+echo Interfaces file
+head /etc/network/interfaces
+
+echo OpenStack User Config
+head /etc/openstack_deploy/openstack_user_config.yml
+
 echo Done!
 echo "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
 echo "| Things that may still need to be done                                   |"
@@ -63,4 +71,5 @@ echo "| Add yourself to visudo NOPASSWD                                         
 echo "| /opt/openstack-ansible/playbooks/openstack-ansible setup-everything.yml |"
 echo "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
 
+read -p "Press [Enter] to reboot if everything looks good. Otherwise, CTRL + C to cancel."
 reboot
