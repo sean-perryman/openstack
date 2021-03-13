@@ -5,7 +5,7 @@ apt upgrade -y > /dev/null
 echo Installing stuff from apt
 
 echo "Grabbing down new config files (interfaces, openstack_user_config.yml, resolv.conf)"
-wget -O ~/etc/network/interfaces https://raw.githubusercontent.com/sean-perryman/openstack/main/infra1_interfaces
+wget -O ~/interfaces https://raw.githubusercontent.com/sean-perryman/openstack/main/infra1_interfaces
 wget -O ~/openstack_user_config.yml https://raw.githubusercontent.com/sean-perryman/openstack/main/openstack_user_config.yml
 wget -O ~/resolv.conf https://raw.githubusercontent.com/sean-perryman/openstack/main/resolv.conf
 
