@@ -39,7 +39,6 @@ echo Fixing .ssh perms for Cloudy
 chown -R cloudy:cloudy /home/cloudy/
 
 cp ~/resolv.conf /etc/resolv.conf
-cp ~/openstack_user_config.yml /etc/openstack_deploy
 cp ~/interfaces /etc/network/interfaces
 
 echo Done!
