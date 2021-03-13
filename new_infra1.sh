@@ -55,7 +55,7 @@ cp ~/resolv.conf /etc/resolv.conf
 cp ~/openstack_user_config.yml /etc/openstack_deploy
 cp ~/interfaces /etc/network/interfaces
 
-ping google.com
+ping -c 4 google.com
 
 echo Interfaces file
 head /etc/network/interfaces
