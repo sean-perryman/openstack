@@ -1,7 +1,7 @@
 #!/bin/bash
 # This is my attempt at some automation for the OpenStack testing
-apt update > /dev/null
-apt upgrade -y > /dev/null
+apt update
+apt upgrade -y
 echo Installing stuff from apt
 
 echo "Grabbing down new config files (interfaces, openstack_user_config.yml, resolv.conf)"

@@ -5,7 +5,7 @@ apt upgrade -y
 echo Installing stuff from apt
 
 echo "Grabbing down new config files (interfaces, openstack_user_config.yml, resolv.conf)"
-wget -O ~/interfaces https://raw.githubusercontent.com/sean-perryman/openstack/main/compute1_interfaces/
+wget -O ~/interfaces https://raw.githubusercontent.com/sean-perryman/openstack/main/compute1_interfaces
 wget -O ~/resolv.conf https://raw.githubusercontent.com/sean-perryman/openstack/main/resolv.conf
 
 apt install -y ifupdown ifupdown-extra bridge-utils debootstrap openssh-server tcpdump vlan python3
