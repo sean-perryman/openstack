@@ -8,7 +8,7 @@ echo "Grabbing down new config files (interfaces, openstack_user_config.yml, res
 wget -O ~/interfaces https://raw.githubusercontent.com/sean-perryman/openstack/main/compute2_interfaces
 wget -O ~/resolv.conf https://raw.githubusercontent.com/sean-perryman/openstack/main/resolv.conf
 
-apt install -y ifupdown ifupdown-extra bridge-utils debootstrap openssh-server tcpdump vlan python3 resolvconf
+apt install -y ifupdown ifupdown-extra bridge-utils debootstrap openssh-server tcpdump vlan python3 resolvconf bashtop lm-sensors
 
 echo Disabling UFW
 systemctl disable ufw
