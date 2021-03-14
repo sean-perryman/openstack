@@ -16,8 +16,8 @@ systemctl disable ufw
 echo Stopping UFW
 systemctl stop ufw
 
-echo Removing Netplan files
-rm -rf /etc/netplan/*
+echo Moving Netplan files
+mv /etc/netplan/* ~
 
 echo Setting timezone and enabling NTP
 timedatectl set-ntp true
