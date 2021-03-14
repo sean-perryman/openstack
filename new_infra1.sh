@@ -9,7 +9,8 @@ wget -O ~/interfaces https://raw.githubusercontent.com/sean-perryman/openstack/m
 wget -O ~/openstack_user_config.yml https://raw.githubusercontent.com/sean-perryman/openstack/main/openstack_user_config.yml
 wget -O ~/resolv.conf https://raw.githubusercontent.com/sean-perryman/openstack/main/resolv.conf
 
-apt install -y ifupdown ifupdown-extra bridge-utils resolvconf build-essential git chrony openssh-server python3-dev bashtop lm-sensors
+apt install -y ifupdown ifupdown-extra bridge-utils resolvconf build-essential git chrony openssh-server python3-dev lm-sensors
+snap insatll bashtop
 
 echo Disabling UFW
 systemctl disable ufw
