@@ -132,15 +132,13 @@ network_hosts:
 
 # nova hypervisors - YOU HAVE TO HAVE ONE OF THESE FOR THIS TO WORK
 compute_hosts:
-#  infra1:
-#    ip: 172.29.236.11
-compute1:
-  ip: 172.29.236.21
+  compute1:
+    ip: 172.29.236.21
+  compute2:
+    ip: 172.29.236.22
 
 # cinder storage host (LVM-backed)
 storage_hosts:
-#  infra1:
-#    ip: 172.29.236.11
   compute1:
     ip: 172.29.236.21
     container_vars:
