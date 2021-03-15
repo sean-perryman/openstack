@@ -41,7 +41,7 @@ global_overrides:
         container_bridge: "br-vlan"
         container_type: "veth"
         container_interface: "eth12"
-        host_bind_override: "eth12"
+        host_bind_override: "enp2s0f0"
         type: "flat"
         net_name: "flat"
         group_binds:
@@ -134,8 +134,6 @@ network_hosts:
 compute_hosts:
   compute1:
     ip: 172.29.236.21
-  compute2:
-    ip: 172.29.236.22
 
 # cinder storage host (LVM-backed)
 storage_hosts:

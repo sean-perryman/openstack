@@ -1,0 +1,56 @@
+# Create a network
+openstack network create  --share --external \
+  --provider-physical-network flat \
+  --provider-network-type flat flat
+
+# Create a subnet
+openstack subnet create --network flat \
+  --allocation-pool start=192.168.11.100,end=192.168.11.150 \
+  --dns-nameserver 1.1.1.1 --gateway 192.168.11.1 \
+  --subnet-range 192.168.11.0/24 flat
+
+# Create a flavor / 1 vCPU, 64MB RAM, 1GB Disk (For CirrOS)
+openstack flavor create --id 0 --vcpus 1 --ram 64 --disk 1 m1.nano 
+openstack flavor create --id 1 --vcpus 1 --ram 2048 --disk 20 m1.small
+openstack flavor create --id 2 --vcpus 2 --ram 4096 --disk 40 m1.medium
+openstack flavor create --id 3 --vcpus 4 --ram 8192 --disk 80 m1.large
+openstack flavor create --id 4 --vcpus 5 --ram 16384 --disk 160 m1.xlarge
+
+# Create a key pair
+ssh-keygen -q -N ""
+openstack keypair create --public-key ~/.ssh/id_rsa.pub mykey
+
+# Verify the key pair
+openstack keypair list
+
+# Add things to the default security group
+openstack security group rule create --proto icmp default
+openstack security group rule create --proto tcp --dst-port 22 default
+
+# Upload the CirrOS Image
+wget http://download.cirros-cloud.net/0.3.4/cirros-0.3.4-x86_64-disk.img
+openstack image create "cirros" \
+  --file cirros-0.3.4-x86_64-disk.img \
+  --disk-format qcow2 --container-format bare \
+  --public
+
+# Launch an instance
+openstack server create --flavor m1.nano --image cirros --security-group default --key-name mykey cirros-test
+
+#Get Ubuntu ISO and create an image
+wget https://releases.ubuntu.com/20.04.2.0/ubuntu-20.04.2.0-desktop-amd64.iso
+openstack image create "ubuntu-desktop-20.04" \
+  --file ubuntu-20.04.2.0-desktop-amd64.iso \
+  --disk-format iso --container-format bare \
+  --public
+
+wget https://releases.ubuntu.com/20.04.2/ubuntu-20.04.2-live-server-amd64.iso
+openstack image create "ubuntu-server-20.04" \
+  --file ubuntu-20.04.2-live-server-amd64.iso \
+  --disk-format iso --container-format bare \
+  --public
+
+# Create a test Ubuntu instance
+openstack server create --flavor m1.small --image Ubuntu --security-group default --key-name mykey ubuntu-test
+
+Mar 13 23:29:23 infra1 cinder-volume[373863]: 2021-03-13 23:29:23.304 373863 ERROR cinder.cmd.volume [-] Configuration for cinder-volume does not specify "enabled_backends". Using DEFAULT section to configure drivers is not supported since Ocata.
