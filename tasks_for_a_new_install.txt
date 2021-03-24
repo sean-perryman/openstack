@@ -53,4 +53,9 @@ openstack image create "ubuntu-server-20.04" \
 # Create a test Ubuntu instance
 openstack server create --flavor m1.small --image Ubuntu --security-group default --key-name mykey ubuntu-test
 
-Mar 13 23:29:23 infra1 cinder-volume[373863]: 2021-03-13 23:29:23.304 373863 ERROR cinder.cmd.volume [-] Configuration for cinder-volume does not specify "enabled_backends". Using DEFAULT section to configure drivers is not supported since Ocata.
+
+openstack image create \
+        --container-format bare \
+        --disk-format qcow2 \
+        --file debian-10-openstack-amd64.qcow2 \
+        debian-9-openstack-amd64
