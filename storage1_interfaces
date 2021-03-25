@@ -32,7 +32,7 @@ iface br-mgmt inet static
     bridge_waitport 0
     bridge_fd 0
     bridge_ports eno1.10
-    address 172.29.236.21
+    address 172.29.236.31
     netmask 255.255.252.0
     gateway 172.29.236.1
     dns-nameservers 1.1.1.1 1.0.0.1
