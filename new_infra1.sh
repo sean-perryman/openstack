@@ -8,6 +8,7 @@ echo "Grabbing down new config files (interfaces, openstack_user_config.yml, res
 wget -O ~/interfaces https://raw.githubusercontent.com/sean-perryman/openstack/main/infra1_interfaces
 wget -O ~/openstack_user_config.yml https://raw.githubusercontent.com/sean-perryman/openstack/main/openstack_user_config.yml
 wget -O ~/resolv.conf https://raw.githubusercontent.com/sean-perryman/openstack/main/resolv.conf
+wget -O ~/user_variables.yml https://raw.githubusercontent.com/sean-perryman/openstack/main/user_variables.yml
 
 apt install -y ifupdown ifupdown-extra bridge-utils resolvconf build-essential git chrony openssh-server python3-dev lm-sensors
 snap install bashtop
