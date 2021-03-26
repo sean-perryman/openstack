@@ -1,0 +1,56 @@
+# Physical interface
+auto enp3s0
+iface enp3s0 inet manual
+
+# Container/Host management VLAN interface
+auto enp3s0.10
+iface enp3s0.10 inet manual
+    vlan-raw-device enp3s0
+
+# OpenStack Networking VXLAN (tunnel/overlay) VLAN interface
+auto enp3s0.30
+iface enp3s0.30 inet manual
+    vlan-raw-device enp3s0
+
+# Storage network VLAN interface (optional)
+auto enp3s0.20
+iface enp3s0.20 inet manual
+    vlan-raw-device enp3s0
+
+# Container/Host management bridge
+auto br-mgmt
+iface br-mgmt inet static
+    bridge_stp on
+    bridge_waitport 0
+    bridge_fd 0
+    bridge_ports enp3s0.10
+    address 172.29.236.23
+    netmask 255.255.252.0
+    gateway 172.29.236.1
+    dns-nameservers 1.1.1.1 1.0.0.1
+
+auto br-vxlan
+iface br-vxlan inet static
+    bridge_stp off
+    bridge_waitport 0
+    bridge_fd 0
+    bridge_ports enp3s0.30
+    address 172.29.240.23
+    netmask 255.255.252.0
+
+# OpenStack Networking VLAN bridge
+auto br-vlan
+iface br-vlan inet manual
+    bridge_stp off
+    bridge_waitport 0
+    bridge_fd 0
+    bridge_ports enp3s0
+
+auto br-storage
+iface br-storage inet static
+    bridge_stp off
+    bridge_waitport 0
+    bridge_fd 0
+    bridge_ports enp3s0.20
+    address 172.29.244.23
+    netmask 255.255.252.0
