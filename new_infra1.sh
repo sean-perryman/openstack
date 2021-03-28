@@ -54,8 +54,9 @@ echo Creating user_secrets.yml
 /usr/bin/python3 /opt/openstack-ansible/scripts/pw-token-gen.py --file /etc/openstack_deploy/user_secrets.yml
 
 cp ~/resolv.conf /etc/resolv.conf
-cp ~/openstack_user_config.yml /etc/openstack_deploy
+cp ~/openstack_user_config.yml /etc/openstack_deploy/
 cp ~/interfaces /etc/network/interfaces
+cp ~/user_interfaces.yml /etc/openstack_deploy/
 
 ping -c 4 google.com
 
