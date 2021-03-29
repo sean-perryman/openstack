@@ -140,7 +140,7 @@ storage_hosts:
         lvm:
           volume_group: ubuntu-vg
           volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
-#          volume_backend_name: LVM_iSCSI
+          volume_backend_name: infra1-lvm
 #          iscsi_ip_address: "172.29.244.21"
 #          ^^ This was for when I was presenting LVM on a compute node
 
