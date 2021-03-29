@@ -127,8 +127,39 @@ network_hosts:
 compute_hosts:
   compute1:
     ip: 172.29.236.21
+#  compute3:
+#    ip: 172.29.236.23
 
 # cinder storage host (LVM-backed)
 storage_hosts:
   infra1:
     ip: 172.29.236.11
+    container_vars:
+      cinder_backends:
+        limit_container_types: cinder_volume
+        lvm:
+          volume_group: ubuntu-vg
+          volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
+          volume_backend_name: infra1-lvm
+#          iscsi_ip_address: "172.29.244.21"
+#          ^^ This was for when I was presenting LVM on a compute node
+
+# ceph-mon containers
+#ceph-mon_hosts: 
+#  infra1:
+#    ip: 172.29.236.11
+
+# ceph-mds containers
+#ceph-mds_hosts: 
+#  infra1:
+#    ip: 172.29.236.11
+
+# ganesha-nfs hosts
+#ceph-nfs_hosts: 
+#  infra1:
+#    ip: 172.29.236.11
+
+# ceph-osd hosts
+#ceph-osd_hosts:
+#  osd1:
+#    ip: 172.29.236.31
