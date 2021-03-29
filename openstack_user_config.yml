@@ -125,40 +125,41 @@ network_hosts:
 
 # nova hypervisors - YOU HAVE TO HAVE ONE OF THESE FOR THIS TO WORK
 compute_hosts:
-#  compute1:
-#    ip: 172.29.236.21
-  compute3:
-    ip: 172.29.236.23
+  compute1:
+    ip: 172.29.236.21
+#  compute3:
+#    ip: 172.29.236.23
 
 # cinder storage host (LVM-backed)
 storage_hosts:
   infra1:
     ip: 172.29.236.11
-#    container_vars:
-#      cinder_backends:
-#        limit_container_types: cinder_volume
-#        lvm:
-#          volume_group: cinder-volumes
-#          volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
+    container_vars:
+      cinder_backends:
+        limit_container_types: cinder_volume
+        lvm:
+          volume_group: cinder-volumes
+          volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
 #          volume_backend_name: LVM_iSCSI
 #          iscsi_ip_address: "172.29.244.21"
+#          ^^ This was for when I was presenting LVM on a compute node
 
 # ceph-mon containers
-ceph-mon_hosts: 
-  infra1:
-    ip: 172.29.236.11
+#ceph-mon_hosts: 
+#  infra1:
+#    ip: 172.29.236.11
 
 # ceph-mds containers
-ceph-mds_hosts: 
-  infra1:
-    ip: 172.29.236.11
+#ceph-mds_hosts: 
+#  infra1:
+#    ip: 172.29.236.11
 
 # ganesha-nfs hosts
-ceph-nfs_hosts: 
-  infra1:
-    ip: 172.29.236.11
+#ceph-nfs_hosts: 
+#  infra1:
+#    ip: 172.29.236.11
 
 # ceph-osd hosts
-ceph-osd_hosts:
-  osd1:
-    ip: 172.29.236.31
+#ceph-osd_hosts:
+#  osd1:
+#    ip: 172.29.236.31

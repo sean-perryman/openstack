@@ -56,7 +56,7 @@ echo Creating user_secrets.yml
 cp ~/resolv.conf /etc/resolv.conf
 cp ~/openstack_user_config.yml /etc/openstack_deploy/
 cp ~/interfaces /etc/network/interfaces
-cp ~/user_interfaces.yml /etc/openstack_deploy/
+# cp ~/user_interfaces.yml /etc/openstack_deploy/
 
 ping -c 4 google.com
 
