@@ -42,7 +42,7 @@ echo Fixing .ssh perms for Cloudy
 chown -R cloudy:cloudy /home/cloudy/
 
 echo Cloning OpenStack from git
-git clone -b 22.1.0 https://opendev.org/openstack/openstack-ansible /opt/openstack-ansible
+git clone -b 22.0.1 https://opendev.org/openstack/openstack-ansible /opt/openstack-ansible
 
 echo Copying over openstack_deploy directory
 cp -R /opt/openstack-ansible/etc/openstack_deploy/ /etc/

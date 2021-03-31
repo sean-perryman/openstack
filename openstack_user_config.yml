@@ -148,12 +148,3 @@ storage_hosts:
           volume_group: cinder-volume
           volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
           volume_backend_name: compute1-lvm
-  #compute3:
-  #  ip: 172.29.236.23
-  #  container_vars:
-  #    cinder_backends:
-  #      limit_container_types: cinder_volume
-  #      lvm:
-  #        volume_group: cinder-volume
-  #        volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
-  #        volume_backend_name: compute1-lvm
