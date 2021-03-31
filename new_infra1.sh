@@ -58,6 +58,14 @@ cp ~/openstack_user_config.yml /etc/openstack_deploy/
 cp ~/interfaces /etc/network/interfaces
 # cp ~/user_interfaces.yml /etc/openstack_deploy/
 
+echo Updating hosts file
+echo 172.29.236.21	compute1 >> /etc/hosts
+echo 172.29.236.22	compute2 >> /etc/hosts
+echo 172.29.236.23	compute3 >> /etc/hosts
+echo 172.29.236.31	storage1 >> /etc/hosts
+echo 172.29.236.32	storage2 >> /etc/hosts
+echo 172.29.236.33	storage3 >> /etc/hosts.
+
 ping -c 4 google.com
 
 echo Interfaces file
