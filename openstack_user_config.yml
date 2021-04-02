@@ -56,7 +56,7 @@ global_overrides:
         group_binds:
           - glance_api
           - cinder_api
-          - cinder_volume
+          #- cinder_volume
           - nova_compute
           - ceph-osd
 
@@ -129,22 +129,22 @@ compute_hosts:
     ip: 172.29.236.21
 
 # cinder storage host (LVM-backed)
-storage_hosts:
-  infra1:
-    ip: 172.29.236.11
-    container_vars:
-      cinder_backends:
-        limit_container_types: cinder_volume
-        lvm:
-          volume_group: ubuntu-vg
-          volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
-          volume_backend_name: infra1-lvm
-  compute1:
-    ip: 172.29.236.21
-    container_vars:
-      cinder_backends:
-        limit_container_types: cinder_volume
-        lvm:
-          volume_group: cinder-volume
-          volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
-          volume_backend_name: compute1-lvm
+#storage_hosts:
+#  infra1:
+#    ip: 172.29.236.11
+#    container_vars:
+#      cinder_backends:
+#        limit_container_types: cinder_volume
+#        lvm:
+#          volume_group: ubuntu-vg
+#          volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
+#          volume_backend_name: infra1-lvm
+#  compute1:
+#    ip: 172.29.236.21
+#    container_vars:
+#      cinder_backends:
+#        limit_container_types: cinder_volume
+#        lvm:
+#          volume_group: cinder-volume
+#          volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
+#          volume_backend_name: compute1-lvm

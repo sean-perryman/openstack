@@ -6,7 +6,7 @@ openstack network create  --share --external \
 # Create a subnet
 openstack subnet create --network flat \
   --allocation-pool start=192.168.10.70,end=192.168.10.80 \
-  --dns-nameserver 1.1.1.1 --gateway 192.168.11.1 \
+  --dns-nameserver 1.1.1.1 --gateway 192.168.10.1 \
   --subnet-range 192.168.10.0/24 flat
 
 # Create a flavor / 1 vCPU, 64MB RAM, 1GB Disk (For CirrOS)
@@ -59,3 +59,21 @@ openstack image create \
         --disk-format qcow2 \
         --file debian-10-openstack-amd64.qcow2 \
         debian-9-openstack-amd64
+
+
+# CEPH
+# Add new disks - this is on the storage node, during the "FAILED - Retrying: Waiting for all OSDs to be up)"
+for dev in sda sdb; do ceph-volume lvm create --bluestore --crush-device-class hdd_volume --data /dev/$dev; done
+
+# This happens on the ceph_mon container - Run this after the playbooks fail after adding the disks
+ceph osd crush rm-device-class osd.0
+ceph osd crush set-device-class hdd_storage osd.0
+ceph osd crush rule create-replicated hdd_storages default host hdd_storage
+
+for pool in images backups metrics cephfs_data; do ceph osd pool set $pool crush_rule hdd_storages; ceph osd pool set $pool size 1; done
+for pool in volumes vms cephfs_metadata; do ceph osd pool set $pool crush_rule hdd_storages;ceph osd pool set $pool size 2;done
+for pool in $(ceph osd lspools|awk '{print $2}'); do ceph osd pool set $pool min_size 1;ceph osd pool set $pool pg_num 25; ceph osd pool set $pool pgp_num 25;done
+
+
+
+02:00:00:26:60:7d
